@@ -3,7 +3,7 @@ export type Page = {
   title: string;
   subtitle: string;
   updatedAt: string;
-  body: string;
+  body: string[];
 };
 
 export type Category = {

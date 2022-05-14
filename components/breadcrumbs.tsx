@@ -1,5 +1,5 @@
 import { Category, Page } from "../typings/doc";
-import styles from "../styles/Breadcrumbs.module.scss";
+import styles from "../styles/breadcrumbs.module.scss";
 
 type BreadcrumbsProps = {
   category: Category;
@@ -7,10 +7,10 @@ type BreadcrumbsProps = {
 };
 const Breadcrumbs = ({ category, page }: BreadcrumbsProps) => {
   return (
-    <div className={styles.breadcrumbs}>
-      <span>{category.title}</span>
-      <span>/</span>
-      <span>{page.title}</span>
+    <div className={styles.container}>
+      <span className={styles.category}>{category.title}</span>
+      <span className={styles.slash}>/</span>
+      <span className={styles.page}>{page.title}</span>
     </div>
   );
 };

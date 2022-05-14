@@ -5,12 +5,16 @@ var path = require("path");
 var faker_1 = require("@faker-js/faker");
 var getPage = function () {
     var title = faker_1.faker.lorem.word();
+    // body is multiple paragraphs
+    var body = Array(faker_1.faker.datatype.number(10))
+        .fill(null)
+        .map(function () { return faker_1.faker.lorem.paragraph(faker_1.faker.datatype.number(10)); });
     return {
         id: faker_1.faker.datatype.uuid(),
         title: title,
         subtitle: "".concat(faker_1.faker.commerce.productAdjective(), " ").concat(title),
         updatedAt: faker_1.faker.date.recent().toISOString(),
-        body: faker_1.faker.lorem.paragraphs()
+        body: body
     };
 };
 var getCategory = function () {

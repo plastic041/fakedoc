@@ -1,10 +1,11 @@
-import { readFile } from "fs/promises";
 import { GetStaticPaths, GetStaticProps } from "next";
-import * as path from "path";
-import Sidebar from "../../components/sidebar";
 import { Category, Doc, Page } from "../../typings/doc";
 import styles from "../../styles/Layout.module.scss";
 import { getDoc } from "../../lib/doc";
+import Sidebar from "../../components/sidebar";
+import Breadcrumbs from "../../components/breadcrumbs";
+import Layout from "../../components/layout";
+import Main from "../../components/main";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const doc = await getDoc();
@@ -66,16 +67,10 @@ const Page = ({
   pageData: Page;
 }) => {
   return (
-    <div className={styles.container}>
+    <Layout>
       <Sidebar doc={docData} currentPage={pageData} />
-      <main>
-        <span></span>
-        <h1>{pageData.title}</h1>
-        <h2>{pageData.subtitle}</h2>
-        <time dateTime={pageData.updatedAt}>{pageData.updatedAt}</time>
-        <p>{pageData.body}</p>
-      </main>
-    </div>
+      <Main category={categoryData} page={pageData} />
+    </Layout>
   );
 };
 

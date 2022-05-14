@@ -5,12 +5,17 @@ import { Category, Doc, Page } from "../typings/doc";
 
 const getPage = (): Page => {
   const title = faker.lorem.word();
+  // body is multiple paragraphs
+  const body = Array(faker.datatype.number(10))
+    .fill(null)
+    .map(() => faker.lorem.paragraph(faker.datatype.number(10)));
+
   return {
     id: faker.datatype.uuid(),
     title,
     subtitle: `${faker.commerce.productAdjective()} ${title}`,
     updatedAt: faker.date.recent().toISOString(),
-    body: faker.lorem.paragraphs(),
+    body,
   };
 };
 

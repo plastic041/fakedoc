@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "../styles/Sidebar.module.scss";
-import { Category, Doc, Page } from "../typings/doc";
+import styles from "../styles/sidebar.module.scss";
+import { Doc, Page } from "../typings/doc";
 
 type SidebarProps = {
   doc: Doc;
@@ -9,6 +9,9 @@ type SidebarProps = {
 const Sidebar = ({ doc, currentPage }: SidebarProps) => {
   return (
     <aside className={styles.sidebar}>
+      <Link href="/">
+        <a className={styles.home}>Home</a>
+      </Link>
       <ul className={styles.categories}>
         {doc.categories.map((category) => {
           return (

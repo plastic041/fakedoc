@@ -2,6 +2,7 @@ import { Doc } from "../typings/doc";
 import { readFile } from "fs/promises";
 import * as path from "path";
 import Sidebar from "../components/sidebar";
+import Layout from "../components/layout";
 
 export const getStaticProps = async () => {
   const filePath = path.resolve(process.cwd(), "resources/doc.json");
@@ -16,9 +17,9 @@ export const getStaticProps = async () => {
 
 const Home = ({ data }: { data: Doc }) => {
   return (
-    <div>
+    <Layout>
       <Sidebar doc={data} />
-    </div>
+    </Layout>
   );
 };
 
