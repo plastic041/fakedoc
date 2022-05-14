@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "../styles/Sidebar.module.scss";
-import { Doc, Page } from "../typings/doc";
+import { Category, Doc, Page } from "../typings/doc";
 
 type SidebarProps = {
   doc: Doc;
@@ -23,7 +23,7 @@ const Sidebar = ({ doc, currentPage }: SidebarProps) => {
                           <Link href={`/${category.title}/${page.title}`}>
                             <a
                               className={
-                                page.title === currentPage?.title
+                                page.id === currentPage?.id
                                   ? styles.current
                                   : ""
                               }

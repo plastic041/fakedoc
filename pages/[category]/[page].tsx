@@ -4,20 +4,17 @@ import * as path from "path";
 import Sidebar from "../../components/sidebar";
 import { Category, Doc, Page } from "../../typings/doc";
 import styles from "../../styles/Layout.module.scss";
+import { getDoc } from "../../lib/doc";
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const filePath = path.resolve(process.cwd(), "resources/doc.json");
-  const json = await readFile(filePath, "utf8");
-  const docData = JSON.parse(json) as Doc;
+  const doc = await getDoc();
 
   const { category, page } = context.params as {
     category: string;
     page: string;
   };
 
-  console.log(docData, category);
-
-  const categoryData = docData.categories.find((c) => c.title === category);
+  const categoryData = doc.categories.find((c) => c.title === category);
 
   if (!categoryData) {
     throw new Error("Category not found");
@@ -31,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      docData,
+      docData: doc,
       categoryData,
       pageData,
     },
@@ -39,12 +36,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const filePath = path.resolve(process.cwd(), "resources/doc.json");
-  const json = await readFile(filePath, "utf8");
-  const docData = JSON.parse(json) as Doc;
+  const doc = await getDoc();
 
   const paths: { params: { category: string; page: string } }[] = [];
-  docData.categories.forEach((category) => {
+  doc.categories.forEach((category) => {
     category.pages.forEach((page) => {
       paths.push({
         params: {
@@ -74,6 +69,7 @@ const Page = ({
     <div className={styles.container}>
       <Sidebar doc={docData} currentPage={pageData} />
       <main>
+        <span></span>
         <h1>{pageData.title}</h1>
         <h2>{pageData.subtitle}</h2>
         <time dateTime={pageData.updatedAt}>{pageData.updatedAt}</time>

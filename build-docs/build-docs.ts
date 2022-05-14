@@ -3,8 +3,8 @@ import * as path from "path";
 import { faker } from "@faker-js/faker";
 import { Category, Doc, Page } from "../typings/doc";
 
-export const getPage = (): Page => {
-  const title = faker.commerce.product();
+const getPage = (): Page => {
+  const title = faker.lorem.word();
   return {
     id: faker.datatype.uuid(),
     title,
@@ -14,8 +14,8 @@ export const getPage = (): Page => {
   };
 };
 
-export const getCategory = (): Category => {
-  const title = faker.commerce.department();
+const getCategory = (): Category => {
+  const title = faker.lorem.word();
   const pages = Array(faker.datatype.number(10)).fill(null).map(getPage);
   return {
     id: faker.datatype.uuid(),
@@ -24,7 +24,7 @@ export const getCategory = (): Category => {
   };
 };
 
-export const getDoc = (): Doc => {
+const getDoc = (): Doc => {
   const categories = Array(faker.datatype.number(10))
     .fill(null)
     .map(getCategory);
