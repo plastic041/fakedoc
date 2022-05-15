@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "~/styles/sidebar.module.scss";
+import styles from "./styles.module.scss";
 import { Doc, Page } from "~/typings/doc";
 
 type SidebarProps = {
@@ -8,7 +8,7 @@ type SidebarProps = {
 };
 const Sidebar = ({ doc, currentPage }: SidebarProps) => {
   return (
-    <aside className={styles.sidebar}>
+    <nav className={styles.sidebar}>
       <Link href="/">
         <a className={styles.home}>Home</a>
       </Link>
@@ -44,7 +44,7 @@ const Sidebar = ({ doc, currentPage }: SidebarProps) => {
           );
         })}
       </ul>
-    </aside>
+    </nav>
   );
 };
 

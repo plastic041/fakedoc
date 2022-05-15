@@ -1,4 +1,4 @@
-import styles from "~/styles/layout.module.scss";
+import styles from "./styles.module.scss";
 import React from "react";
 
 type LayoutProps = {

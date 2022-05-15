@@ -1,6 +1,6 @@
 import { Category, Page } from "~/typings/doc";
 import Breadcrumbs from "~/components/breadcrumbs";
-import styles from "~/styles/main.module.scss";
+import styles from "./styles.module.scss";
 import dayjs from "dayjs";
 
 type MainProps = {

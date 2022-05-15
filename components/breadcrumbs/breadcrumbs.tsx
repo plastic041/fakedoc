@@ -1,5 +1,5 @@
 import { Category, Page } from "~/typings/doc";
-import styles from "~/styles/breadcrumbs.module.scss";
+import styles from "./styles.module.scss";
 
 type BreadcrumbsProps = {
   category: Category;
