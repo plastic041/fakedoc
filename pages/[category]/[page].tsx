@@ -4,6 +4,7 @@ import { getDoc } from "~/lib/doc";
 import Sidebar from "~/components/sidebar";
 import Layout from "~/components/layout";
 import Main from "~/components/main";
+import Head from "next/head";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const doc = await getDoc();
@@ -65,10 +66,15 @@ const Page = ({
   pageData: Page;
 }) => {
   return (
-    <Layout>
-      <Sidebar doc={docData} currentPage={pageData} />
-      <Main category={categoryData} page={pageData} />
-    </Layout>
+    <>
+      <Head>
+        <title>{pageData.title}</title>
+      </Head>
+      <Layout>
+        <Sidebar doc={docData} currentPage={pageData} />
+        <Main category={categoryData} page={pageData} />
+      </Layout>
+    </>
   );
 };
 
