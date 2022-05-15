@@ -6,9 +6,21 @@ import { Category, Doc, Page } from "../typings/doc";
 const getPage = (): Page => {
   const title = faker.lorem.word();
   // body is multiple paragraphs
-  const body = Array(faker.datatype.number(10))
+  const body = Array(
+    faker.datatype.number({
+      min: 1,
+      max: 32,
+    })
+  )
     .fill(null)
-    .map(() => faker.lorem.paragraph(faker.datatype.number(10)));
+    .map(() =>
+      faker.lorem.paragraph(
+        faker.datatype.number({
+          min: 1,
+          max: 16,
+        })
+      )
+    );
 
   return {
     id: faker.datatype.uuid(),
@@ -21,7 +33,9 @@ const getPage = (): Page => {
 
 const getCategory = (): Category => {
   const title = faker.lorem.word();
-  const pages = Array(faker.datatype.number(10)).fill(null).map(getPage);
+  const pages = Array(faker.datatype.number({ min: 2, max: 10 }))
+    .fill(null)
+    .map(getPage);
   return {
     id: faker.datatype.uuid(),
     title,
@@ -30,7 +44,7 @@ const getCategory = (): Category => {
 };
 
 const getDoc = (): Doc => {
-  const categories = Array(faker.datatype.number(10))
+  const categories = Array(faker.datatype.number({ min: 10, max: 16 }))
     .fill(null)
     .map(getCategory);
   return {

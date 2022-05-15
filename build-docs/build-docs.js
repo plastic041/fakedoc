@@ -6,9 +6,17 @@ var faker_1 = require("@faker-js/faker");
 var getPage = function () {
     var title = faker_1.faker.lorem.word();
     // body is multiple paragraphs
-    var body = Array(faker_1.faker.datatype.number(10))
+    var body = Array(faker_1.faker.datatype.number({
+        min: 1,
+        max: 32
+    }))
         .fill(null)
-        .map(function () { return faker_1.faker.lorem.paragraph(faker_1.faker.datatype.number(10)); });
+        .map(function () {
+        return faker_1.faker.lorem.paragraph(faker_1.faker.datatype.number({
+            min: 1,
+            max: 16
+        }));
+    });
     return {
         id: faker_1.faker.datatype.uuid(),
         title: title,
@@ -19,7 +27,9 @@ var getPage = function () {
 };
 var getCategory = function () {
     var title = faker_1.faker.lorem.word();
-    var pages = Array(faker_1.faker.datatype.number(10)).fill(null).map(getPage);
+    var pages = Array(faker_1.faker.datatype.number({ min: 2, max: 10 }))
+        .fill(null)
+        .map(getPage);
     return {
         id: faker_1.faker.datatype.uuid(),
         title: title,
@@ -27,7 +37,7 @@ var getCategory = function () {
     };
 };
 var getDoc = function () {
-    var categories = Array(faker_1.faker.datatype.number(10))
+    var categories = Array(faker_1.faker.datatype.number({ min: 10, max: 16 }))
         .fill(null)
         .map(getCategory);
     return {
