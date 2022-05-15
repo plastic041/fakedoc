@@ -1,8 +1,8 @@
-import { Doc } from "../typings/doc";
+import { Doc } from "~/typings/doc";
 import { readFile } from "fs/promises";
 import * as path from "path";
-import Sidebar from "../components/sidebar";
-import Layout from "../components/layout";
+import Sidebar from "~/components/sidebar";
+import Layout from "~/components/layout";
 
 export const getStaticProps = async () => {
   const filePath = path.resolve(process.cwd(), "resources/doc.json");

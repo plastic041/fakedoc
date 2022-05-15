@@ -1,11 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { Category, Doc, Page } from "../../typings/doc";
-import styles from "../../styles/Layout.module.scss";
-import { getDoc } from "../../lib/doc";
-import Sidebar from "../../components/sidebar";
-import Breadcrumbs from "../../components/breadcrumbs";
-import Layout from "../../components/layout";
-import Main from "../../components/main";
+import { Category, Doc, Page } from "~/typings/doc";
+import { getDoc } from "~/lib/doc";
+import Sidebar from "~/components/sidebar";
+import Layout from "~/components/layout";
+import Main from "~/components/main";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const doc = await getDoc();

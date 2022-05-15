@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "../styles/sidebar.module.scss";
-import { Doc, Page } from "../typings/doc";
+import styles from "~/styles/sidebar.module.scss";
+import { Doc, Page } from "~/typings/doc";
 
 type SidebarProps = {
   doc: Doc;
